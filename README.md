@@ -10,3 +10,5 @@ Paper 3: FG-BERT: a generalized and self-supervised functional group-based molec
         
         
         
+
+Paper 4: Screening Framework of Metal−N−C Diatomic Catalysts for Electrochemical CO2 Reduction (https://doi.org/10.1021/acscatal.5c07689) <br>
