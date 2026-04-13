@@ -1,0 +1,55 @@
+SYSTEM = ${SYSTEM}
+
+# ── Initialization ──────────────────────────────────────────────────────────
+ISTART = 0
+ICHARG = 2
+
+# ── Accuracy and cutoff ─────────────────────────────────────────────────────
+ENCUT  = 500        # MUST NOT change; LFT consistency requirement
+PREC   = Accurate
+GGA    = PE
+
+# ── Electronic steps ─────────────────────────────────────────────────────────
+ALGO   = All
+NELM   = 300
+NELMIN = 6
+EDIFF  = 1E-5
+
+# ── Smearing ─────────────────────────────────────────────────────────────────
+ISMEAR = 0
+SIGMA  = 0.05
+
+# ── Spin polarization ────────────────────────────────────────────────────────
+ISPIN  = 2
+MAGMOM = ${MAGMOM}
+
+# ── Single-point: ionic steps disabled ───────────────────────────────────────
+# LFT labeling rule: geometry comes from the MLIP pre-optimizer; VASP evaluates
+# energy and forces at the fixed geometry only. NSW > 0 is forbidden here.
+NSW    = 0          # No ionic relaxation
+IBRION = -1         # Disable ionic mover entirely
+
+# ── Symmetry ─────────────────────────────────────────────────────────────────
+ISYM   = -1         # Fully disable symmetry for adsorption geometries
+
+# ── Real-space projection ────────────────────────────────────────────────────
+LREAL  = Auto
+
+# ── van der Waals correction ─────────────────────────────────────────────────
+IVDW   = 12
+
+# ── Implicit solvation (VASPsol) ─────────────────────────────────────────────
+LSOL   = .TRUE.
+EB_K   = 78.4
+
+# ── Dipole correction ────────────────────────────────────────────────────────
+LDIPOL = .TRUE.
+IDIPOL = 3
+
+# ── Output ───────────────────────────────────────────────────────────────────
+LWAVE  = .FALSE.    # Do not save WAVECAR; LFT labels are numerous, save disk space
+LCHARG = .FALSE.
+LORBIT = 11
+
+# ── Parallelization ──────────────────────────────────────────────────────────
+NCORE  = 7          # 56-core nodes: 56/7 = 8 groups
