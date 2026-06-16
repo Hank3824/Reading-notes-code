@@ -43,13 +43,14 @@ with MPRester(api_key="oZGg3YeOT..........xZA6volqI") as mpr:
                     if mol:
                         smiles = Chem.MolToSmiles(mol)
                 
-                # 获取氧化电位
+                # 获取氧化电位（MP 返回值相对于标准氢电极 SHE）
                 if hasattr(doc, 'redox') and doc.redox:
                     for solvent, redox_comp in doc.redox.items():
                         if solvent == "NONE":
                             ox_pot_h = redox_comp.oxidation_potential
                             if ox_pot_h is not None:
-                                ox_pot_li = ox_pot_h - 3.04
+                                # Li/Li+ = -3.04 V vs SHE, so E(vs Li/Li+) = E(vs SHE) + 3.04.
+                                ox_pot_li = ox_pot_h + 3.04
                 break  # 通常只需要处理第一个文档
             
             # 添加结果
