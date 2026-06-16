@@ -49,8 +49,9 @@ with MPRester(api_key="oZGg3YeOT..........xZA6volqI") as mpr:
                         if solvent == "NONE":
                             ox_pot_h = redox_comp.oxidation_potential
                             if ox_pot_h is not None:
-                                # Li/Li+ = -3.04 V vs SHE, so E(vs Li/Li+) = E(vs SHE) + 3.04.
-                                ox_pot_li = ox_pot_h + 3.04
+                                # Match MP's oxidation-potential display:
+                                # H/H+ -> Li/Li+ shifts oxidation potentials by -3.04 V.
+                                ox_pot_li = ox_pot_h - 3.04
                 break  # 通常只需要处理第一个文档
             
             # 添加结果
